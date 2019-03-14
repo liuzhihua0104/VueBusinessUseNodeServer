@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import "./mui/dist/css/mui.min.css";
 
 Vue.config.productionTip = false
 

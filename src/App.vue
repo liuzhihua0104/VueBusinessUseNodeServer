@@ -10,18 +10,20 @@
         <span class="mui-tab-label">首页</span>
       </router-link>
       <router-link class="mui-tab-item" to="/membercontainer">
-        <span class="mui-icon mui-icon-email">
+        <!-- <span class="mui-icon mui-icon-email">
           <span class="mui-badge">9</span>
-        </span>
-        <span class="mui-tab-label">消息</span>
+        </span>-->
+        <span class="mui-icon mui-icon-contact"></span>
+        <span class="mui-tab-label">会员</span>
       </router-link>
       <router-link class="mui-tab-item" to="shopcarcontainer">
-        <span class="mui-icon mui-icon-contact"></span>
-        <span class="mui-tab-label">通讯录</span>
+        <!-- <span class="mui-icon mui-icon-contact"></span> -->
+        <span class="mui-icon mui-icon-extra mui-icon-extra-cart"></span>
+        <span class="mui-tab-label">购物车</span>
       </router-link>
       <router-link class="mui-tab-item" to="searchcontainer">
         <span class="mui-icon mui-icon-gear"></span>
-        <span class="mui-tab-label">设置</span>
+        <span class="mui-tab-label">搜索</span>
       </router-link>
     </nav>
   </div>

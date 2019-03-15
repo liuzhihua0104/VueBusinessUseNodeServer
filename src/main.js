@@ -7,6 +7,13 @@ import "./mui/dist/css/mui.min.css";
 
 Vue.config.productionTip = false
 
+
+// 按需引入minu-ui组件
+import { Header } from 'mint-ui';
+Vue.component(Header.name, Header);
+
+
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

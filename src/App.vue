@@ -1,8 +1,7 @@
 <template>
   <div id="app">
     <mt-header fixed title="固定在顶部"></mt-header>
-    <router-view/>
-
+    <router-view class="router-view-box"/>
     <!-- 底部tabbar是mui的组件 -->
     <nav class="mui-bar mui-bar-tab">
       <router-link class="mui-tab-item" to="/homecontainer">
@@ -51,4 +50,12 @@ body {
   width: 100%;
   height: 100%;
 }
+
+.router-view-box{
+padding-top:40px;
+/* padding-bottom: 50.4px; */
+background: grey;
+}
+
+
 </style>

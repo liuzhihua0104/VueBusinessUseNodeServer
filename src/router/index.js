@@ -11,5 +11,6 @@ export default new Router({
       path: '/',
       component: HeaderAndButton
     }
-  ]
+  ],
+  linkActiveClass:"mui-active"
 })

@@ -4,6 +4,8 @@ const config = require('../config')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const packageConfig = require('../package.json')
 
+
+
 exports.assetsPath = function (_path) {
   const assetsSubDirectory = process.env.NODE_ENV === 'production'
     ? config.build.assetsSubDirectory
@@ -29,9 +31,16 @@ exports.cssLoaders = function (options) {
     }
   }
 
+  const px2remLoader = {
+    loader: 'px2rem-loader',
+    options: {
+      remUnit: 37.5
+    }
+  }
+
   // generate loader string to be used with extract text plugin
-  function generateLoaders (loader, loaderOptions) {
-    const loaders = options.usePostCSS ? [cssLoader, postcssLoader] : [cssLoader]
+  function generateLoaders(loader, loaderOptions) {
+    const loaders = options.usePostCSS ? [cssLoader, postcssLoader, px2remLoader] : [cssLoader, px2remLoader]
 
     if (loader) {
       loaders.push({
@@ -52,6 +61,10 @@ exports.cssLoaders = function (options) {
     } else {
       return ['vue-style-loader'].concat(loaders)
     }
+
+
+
+
   }
 
   // https://vue-loader.vuejs.org/en/configurations/extract-css.html

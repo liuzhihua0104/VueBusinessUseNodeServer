@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import 'lib-flexible/flexible.js';//淘宝rem适配方案
 import "./mui/dist/css/mui.min.css";
 import "./mui/dist/css/icons-extra.css"; //引入mui的图标css
 

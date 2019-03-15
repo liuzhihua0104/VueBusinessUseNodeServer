@@ -51,11 +51,10 @@ body {
   height: 100%;
 }
 
-.router-view-box{
-padding-top:40px;
-/* padding-bottom: 50.4px; */
-background: grey;
+.router-view-box {
+  padding-top: 40px;
+  padding-bottom: 50.2px;
+  width: 100%;
+  height: 100%;
 }
-
-
 </style>

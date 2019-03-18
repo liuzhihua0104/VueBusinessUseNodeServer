@@ -4,8 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import 'lib-flexible/flexible.js';//淘宝rem适配方案
-import "./mui/dist/css/mui.min.css";
-import "./mui/dist/css/icons-extra.css"; //引入mui的图标css
+import "./lib/mui/css/mui.min.css";
+import "./lib/mui/css/icons-extra.css"; //引入mui的图标css
 
 import 'mint-ui/lib/style.css'
 
@@ -17,6 +17,10 @@ import { Header, Swipe, SwipeItem } from 'mint-ui';
 Vue.component(Header.name, Header); // 顶部固定栏
 Vue.component(Swipe.name, Swipe); // 轮播图
 Vue.component(SwipeItem.name, SwipeItem); // 轮播图item
+
+// 引入axios并挂在到vue的原型对象上面
+import axios from "axios";
+Vue.prototype.$axios = axios;
 
 
 /* eslint-disable no-new */

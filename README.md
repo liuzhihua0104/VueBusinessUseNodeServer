@@ -1,21 +1,18 @@
-# vuebusiness20190314
+##此项目是我自己开发的vue+node
 
-> vue电商项目
+根目录下有两个文件夹
+nodeServer为后端服务地址
+项目中跨域是node后端解决的
 
-## Build Setup
+前端vue 项目部分
+1、如果全局中没有安装vue-cli 请运行 npm install -g vue-cli
+2、执行 npm install 安装依赖 
+3、npm run dev 运行开发环境
+4、npm run build 构建项目
 
-``` bash
-# install dependencies
-npm install
 
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+后端node部分
+1、执行 npm install 安装依赖
+2、如果全局中没有安装nodemon请运行 npm install -g nodemon
+3、app.listen(9999, "192.168.40.192"),node中监听的地址 "192.168.40.192" 请使用本机的 powershell 运行 ipconfig 拿到 "ipv4" 对应的地址
+4、前端 vue 请求地址和node监听地址全部改为前面的ipv4地址

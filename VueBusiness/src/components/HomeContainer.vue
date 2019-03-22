@@ -11,13 +11,19 @@
 
     <!-- 九宫格 -->
     <ul class="mui-table-view mui-grid-view mui-grid-9">
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
-          <span class="mui-icon mui-icon-home"></span>
-          <div class="mui-media-body">Home</div>
-        </a>
+      <li
+        v-for="item in gird"
+        :key="item.url"
+        class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"
+      >
+        <router-link :to="'/home'">
+          <!-- <span class="mui-icon mui-icon-home"></span>
+          -->
+          <img :src="item.url">
+          <div class="mui-media-body">{{item.title}}</div>
+        </router-link>
       </li>
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+      <!-- <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
         <a href="#">
           <span class="mui-icon mui-icon-email">
             <span class="mui-badge">5</span>
@@ -48,7 +54,7 @@
           <span class="mui-icon mui-icon-phone"></span>
           <div class="mui-media-body">Phone</div>
         </a>
-      </li>
+      </li>-->
     </ul>
   </div>
 </template>
@@ -58,7 +64,15 @@ export default {
   name: "HelloWorld",
   data() {
     return {
-      list: []
+      list: [],
+      gird: [
+        { title: "新闻资讯", url: require("../images/menu1.png") },
+        { title: "图片分享", url: require("../images/menu2.png") },
+        { title: "商品购买", url: require("../images/menu3.png") },
+        { title: "留言反馈", url: require("../images/menu4.png") },
+        { title: "视频专区", url: require("../images/menu5.png") },
+        { title: "联系我们", url: require("../images/menu6.png") }
+      ]
     };
   },
   created() {
@@ -93,6 +107,16 @@ export default {
     }
 
     // 九宫格
+  }
+
+  ul{
+    font-size:14px;
+    background: #fff;
+    li{
+      img{
+        width:60px;
+      }
+    }
   }
 }
 </style>

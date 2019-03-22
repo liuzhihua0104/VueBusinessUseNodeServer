@@ -62,22 +62,10 @@ export default {
     };
   },
   created() {
-    // 发送请求 http://www.liulongbin.top:3005/api/getlunbo
-    this.$axios
-      // .get("http://www.liulongbin.top:3005/api/getlunbo")
-      .get("http://192.168.40.192:9999/api/getlunbo")
-      .then(data => {
-        if (
-          data.data.code == 200 &&
-          data.data.message &&
-          data.data.message.length > 0
-        ) {
-          this.list = data.data.message;
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    // console.log(this.urlApi);
+    this.$get(this.urlApi.homeImgUrl).then(res => {
+      this.list = res.message;
+    });
   }
 };
 </script>

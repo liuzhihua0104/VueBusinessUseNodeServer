@@ -19,8 +19,21 @@ Vue.component(Swipe.name, Swipe); // 轮播图
 Vue.component(SwipeItem.name, SwipeItem); // 轮播图item
 
 // 引入axios并挂在到vue的原型对象上面
-import axios from "axios";
-Vue.prototype.$axios = axios;
+// import axios from "axios";
+// Vue.prototype.$axios = axios;
+
+import urlApi from "./utils/urlApi";
+
+
+// import axios from 'axios'
+import { post, get, patch, put } from './utils/http'
+//定义全局变量
+Vue.prototype.$post = post;
+Vue.prototype.$get = get;
+Vue.prototype.$patch = patch;
+Vue.prototype.$put = put;
+
+Vue.prototype.urlApi=urlApi;
 
 
 /* eslint-disable no-new */

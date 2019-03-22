@@ -12,8 +12,40 @@ app.all('*', function (req, res, next) {
 });
 
 
+// 使用mongodb
+let MongoClient = require("mongodb").MongoClient;
+let dbUrl = "mongodb://localhost:27017";
+
 app.get("/api/getlunbo", function (req, res) {
-  res.json({ "status": 0, "message": [{ "id": 1, "url": "http://www.itcast.cn/subject/phoneweb/index.html", "img": "http://www.itcast.cn/subject/webzly/images/1.jpg" }, { "id": 2, "url": "http://www.itcast.cn/subject/phoneweb/index.html", "img": "http://www.itcast.cn/subject/webzly/images/1.2.jpg" }, { "id": 3, "url": "http://www.itcast.cn/subject/phoneweb/index.html", "img": "http://www.itcast.cn/images/newslide/homepageandphone/20185609105606277.jpg" }] })
+  MongoClient.connect(dbUrl, { useNewUrlParser: true }, function (err, db) {
+    if (err) {
+      res.json({
+        code: 200,
+        msg: "连接数据库失败"
+      })
+      return
+    }
+    // 连接数据库成功，从数据库查找数据
+    let targetDb = db.db("vuebuspro"); // 目标数据库
+    let result = targetDb.collection("home_img").find()  //去home_img集合中查找所有数据
+    result.toArray(function (err, data) {
+      if (err) {
+        res.json({
+          code: 200,
+          msg: "读取数据失败"
+        })
+        return
+      }
+      res.json({
+        code: 200,
+        message: data,
+        msg: "获取图片成功"
+      })
+    })
+    db.close();
+    console.log("close finish")
+  })
+
 })
 
 

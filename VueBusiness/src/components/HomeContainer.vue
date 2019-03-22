@@ -68,7 +68,7 @@ export default {
       .get("http://192.168.40.192:9999/api/getlunbo")
       .then(data => {
         if (
-          data.data.status == 0 &&
+          data.data.code == 200 &&
           data.data.message &&
           data.data.message.length > 0
         ) {

@@ -50,7 +50,7 @@ app.get("/api/getlunbo", function (req, res) {
 
 
 
-app.listen(9999, "192.168.40.192")
+app.listen(9999, "localhost")
 
 // "192.168.40.192" 为本机的ipv4编码
 // app.listen(9999,"localhost")

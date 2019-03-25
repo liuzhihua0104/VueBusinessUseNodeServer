@@ -7,7 +7,8 @@ import { Message } from 'element-ui';
 
 // 环境的切换
 if (process.env.NODE_ENV == 'development') {
-  axios.defaults.baseURL = 'http://192.168.40.192:9999';
+  // axios.defaults.baseURL = 'http://192.168.1.102:9999';
+  axios.defaults.baseURL = 'http://localhost:9999';
 } else if (process.env.NODE_ENV == 'debug') {
   // axios.defaults.baseURL = '';
 } else if (process.env.NODE_ENV == 'production') {

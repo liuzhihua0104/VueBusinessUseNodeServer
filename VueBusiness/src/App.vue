@@ -1,7 +1,12 @@
 <template>
   <div id="app">
     <mt-header fixed title="固定在顶部"></mt-header>
-    <router-view class="router-view-box"/>
+    <!--  enter-active-class="bounce"
+      leave-active-class="fadeOutLeft"
+    :duration="{enter:500,leave:800}"-->
+    <transition mode="out-in">
+      <router-view class="animated router-view-box"/>
+    </transition>
     <!-- 底部tabbar是mui的组件 -->
     <nav class="mui-bar mui-bar-tab">
       <router-link class="mui-tab-item" to="/homecontainer">
@@ -56,5 +61,28 @@ body {
   padding-bottom: 50.2px;
   width: 100%;
   height: 100%;
+}
+
+/* 进入之前 */
+.v-enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+/* 离开之后 */
+.v-leave-to {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.v-enter-to {
+  opacity: 1;
+}
+
+/* 激活时 */
+
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.1s ease-in-out;
 }
 </style>

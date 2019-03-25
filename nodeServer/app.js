@@ -68,7 +68,7 @@ MongoClient.connect(dbUrl, { useNewUrlParser: true }, function (err, db) {
     return
   }
   // db.close();
-  console.log("连接正常1")
+  console.log("连接正常")
   app.get("/api/getlunbo", function (req, res) {
     // 连接数据库成功，从数据库查找数据
     let targetDb = db.db("vuebuspro"); // 目标数据库

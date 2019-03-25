@@ -20,12 +20,12 @@
         <span class="mui-icon mui-icon-contact"></span>
         <span class="mui-tab-label">会员</span>
       </router-link>
-      <router-link class="mui-tab-item" to="shopcarcontainer">
+      <router-link class="mui-tab-item" to="/shopcarcontainer">
         <!-- <span class="mui-icon mui-icon-contact"></span> -->
         <span class="mui-icon mui-icon-extra mui-icon-extra-cart"></span>
         <span class="mui-tab-label">购物车</span>
       </router-link>
-      <router-link class="mui-tab-item" to="searchcontainer">
+      <router-link class="mui-tab-item" to="/searchcontainer">
         <span class="mui-icon mui-icon-gear"></span>
         <span class="mui-tab-label">搜索</span>
       </router-link>

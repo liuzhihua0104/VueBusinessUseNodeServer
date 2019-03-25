@@ -12,53 +12,10 @@ app.all('*', function (req, res, next) {
 });
 
 
-// 使用mongodb
-let MongoClient = require("mongodb").MongoClient;
-let dbUrl = "mongodb://localhost:27017";
-// let dbUrl="mongodb://liuzhihuarose@126.com:13910830226AAAAA!@ds121996.mlab.com:21996/rosemlabdate";
+// // 使用mongodb
+// let MongoClient = require("mongodb").MongoClient;
+// let dbUrl = "mongodb://localhost:27017";
 
-
-
-// 先连接数据库
-MongoClient.connect(dbUrl, { useNewUrlParser: true }, function (err, db) {
-  if (err) {
-    res.json({
-      code: 200,
-      msg: "连接数据库失败"
-    })
-    return
-  }
-
-  // db.close();
-  // console.log("close finish")
-
-  console.log("连接正常")
-  app.get("/api/getlunbo", function (req, res) {
-    // 连接数据库成功，从数据库查找数据
-    let targetDb = db.db("vuebuspro"); // 目标数据库
-    // let targetDb = db.db("rosemlabdate"); // 目标数据库
-    let result = targetDb.collection("home_img").find()  //去home_img集合中查找所有数据
-    result.toArray(function (err, data) {
-      if (err) {
-        res.json({
-          code: 200,
-          msg: "读取数据失败"
-        })
-        return
-      }
-      res.json({
-        code: 200,
-        message: data,
-        msg: "获取图片成功"
-      })
-    })
-  })
-
-})
-
-
-
-// 在接口中连接数据库
 // app.get("/api/getlunbo", function (req, res) {
 //   MongoClient.connect(dbUrl, { useNewUrlParser: true }, function (err, db) {
 //     if (err) {
@@ -70,7 +27,6 @@ MongoClient.connect(dbUrl, { useNewUrlParser: true }, function (err, db) {
 //     }
 //     // 连接数据库成功，从数据库查找数据
 //     let targetDb = db.db("vuebuspro"); // 目标数据库
-//     // let targetDb = db.db("rosemlabdate"); // 目标数据库
 //     let result = targetDb.collection("home_img").find()  //去home_img集合中查找所有数据
 //     result.toArray(function (err, data) {
 //       if (err) {
@@ -92,6 +48,49 @@ MongoClient.connect(dbUrl, { useNewUrlParser: true }, function (err, db) {
 
 // })
 
+
+
+
+// 使用mongodb
+let MongoClient = require("mongodb").MongoClient;
+let dbUrl = "mongodb://localhost:27017";
+// let dbUrl="mongodb://liuzhihuarose@126.com:13910830226AAAAA!@ds121996.mlab.com:21996/rosemlabdate";
+
+
+
+// 先连接数据库
+MongoClient.connect(dbUrl, { useNewUrlParser: true }, function (err, db) {
+  if (err) {
+    res.json({
+      code: 200,
+      msg: "连接数据库失败"
+    })
+    return
+  }
+  // db.close();
+  console.log("连接正常1")
+  app.get("/api/getlunbo", function (req, res) {
+    // 连接数据库成功，从数据库查找数据
+    let targetDb = db.db("vuebuspro"); // 目标数据库
+    // let targetDb = db.db("rosemlabdate"); // 目标数据库
+    let result = targetDb.collection("home_img").find() //去home_img集合中查找所有数据
+    result.toArray(function (err, data) {
+      if (err) {
+        res.json({
+          code: 200,
+          msg: "读取数据失败"
+        })
+        return
+      }
+      res.json({
+        code: 200,
+        message: data,
+        msg: "获取图片成功"
+      })
+    })
+  })
+
+})
 
 
 app.listen(9999, "192.168.40.192")

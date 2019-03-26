@@ -33,7 +33,7 @@ export default {
     return {
       list: [],
       gird: [
-        { title: "新闻资讯", url: require("../../images/menu1.png"),name:"news" },
+        { title: "新闻资讯", url: require("../../images/menu1.png"),name:"newlist" },
         { title: "图片分享", url: require("../../images/menu2.png"),name:"photoshare" },
         { title: "商品购买", url: require("../../images/menu3.png"),name:"buygoods" },
         { title: "留言反馈", url: require("../../images/menu4.png"),name:"leaveMessage" },

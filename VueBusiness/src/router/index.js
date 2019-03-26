@@ -5,6 +5,8 @@ import MemberContainer from "@/components/tabbar/MemberContainer"; // 会员
 import SearchContainer from "@/components/tabbar/SearchContainer"; // 搜索
 import ShopCarContainer from "@/components/tabbar/ShopCarContainer"; // 购物车
 
+import NewList from "@/components/news/NewList"; // 购物车
+
 Vue.use(Router)
 
 export default new Router({
@@ -31,6 +33,12 @@ export default new Router({
       path: '/shopcarcontainer',
       name: "shopcar",
       component: ShopCarContainer
+    },
+
+    {
+      path:"/newlist",
+      name:"newlist",
+      component:NewList   //新闻列表
     }
   ],
   linkActiveClass: "mui-active"

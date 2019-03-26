@@ -69,6 +69,7 @@ MongoClient.connect(dbUrl, { useNewUrlParser: true }, function (err, db) {
   }
   // db.close();
   console.log("连接正常")
+  // 首页获取轮播图
   app.get("/api/getlunbo", function (req, res) {
     // 连接数据库成功，从数据库查找数据
     let targetDb = db.db("vuebuspro"); // 目标数据库
@@ -89,6 +90,18 @@ MongoClient.connect(dbUrl, { useNewUrlParser: true }, function (err, db) {
       })
     })
   })
+
+  // 新闻列表
+  app.get("/api/getnewslist",function(req,res){
+    res.json({
+      code:200,
+      data:[],
+    })
+  })
+
+
+
+
 
 })
 

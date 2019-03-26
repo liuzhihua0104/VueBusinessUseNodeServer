@@ -1,9 +1,6 @@
 <template>
   <div id="app">
     <mt-header fixed title="固定在顶部"></mt-header>
-    <!--  enter-active-class="bounce"
-      leave-active-class="fadeOutLeft"
-    :duration="{enter:500,leave:800}"-->
     <transition mode="out-in">
       <router-view class="animated router-view-box"/>
     </transition>

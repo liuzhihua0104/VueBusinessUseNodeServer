@@ -6,8 +6,11 @@ import router from './router'
 import 'lib-flexible/flexible.js';//淘宝rem适配方案
 import "./lib/mui/css/mui.min.css";
 import "./lib/mui/css/icons-extra.css"; //引入mui的图标css
-
 import 'mint-ui/lib/style.css'
+
+// 项目中引入并安装animate.css
+import animated from "animate.css"; 
+Vue.use(animated)
 
 Vue.config.productionTip = false
 

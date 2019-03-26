@@ -15,17 +15,21 @@ export default new Router({
     },
     {
       path: '/homecontainer',
+      name: "home",
       component: HomeContainer
     },
     {
       path: '/membercontainer',
+      name: "member",
       component: MemberContainer
     },
     {
       path: '/searchcontainer',
+      name: "search",
       component: SearchContainer
     }, {
       path: '/shopcarcontainer',
+      name: "shopcar",
       component: ShopCarContainer
     }
   ],

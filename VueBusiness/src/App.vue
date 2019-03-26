@@ -9,23 +9,19 @@
     </transition>
     <!-- 底部tabbar是mui的组件 -->
     <nav class="mui-bar mui-bar-tab">
-      <router-link class="mui-tab-item" to="/homecontainer">
+      <router-link class="mui-tab-item" :to="{name:'home'}">
         <span class="mui-icon mui-icon-home"></span>
         <span class="mui-tab-label">首页</span>
       </router-link>
-      <router-link class="mui-tab-item" to="/membercontainer">
-        <!-- <span class="mui-icon mui-icon-email">
-          <span class="mui-badge">9</span>
-        </span>-->
+      <router-link class="mui-tab-item" :to="{name:'member'}">
         <span class="mui-icon mui-icon-contact"></span>
         <span class="mui-tab-label">会员</span>
       </router-link>
-      <router-link class="mui-tab-item" to="/shopcarcontainer">
-        <!-- <span class="mui-icon mui-icon-contact"></span> -->
+      <router-link class="mui-tab-item" :to="{name:'shopcar'}">
         <span class="mui-icon mui-icon-extra mui-icon-extra-cart"></span>
         <span class="mui-tab-label">购物车</span>
       </router-link>
-      <router-link class="mui-tab-item" to="/searchcontainer">
+      <router-link class="mui-tab-item" :to="{name:'search'}">
         <span class="mui-icon mui-icon-gear"></span>
         <span class="mui-tab-label">搜索</span>
       </router-link>

@@ -93,7 +93,6 @@ MongoClient.connect(dbUrl, { useNewUrlParser: true }, function (err, db) {
 
   // 新闻列表
   app.get("/api/getnewslist", function (req, res) {
-
     let targetDb = db.db("vuebuspro"); // 目标数据库
     // let targetDb = db.db("rosemlabdate"); // 目标数据库
     let result = targetDb.collection("newlist").find() //去newlist集合中查找所有数据，如果没有应该会自动创建
@@ -106,23 +105,39 @@ MongoClient.connect(dbUrl, { useNewUrlParser: true }, function (err, db) {
       }
 
       // 如果没有数据就去别的服务器请求数据插入到数据库中
-
       if (data.length == 0) {
         // 使用了superagent来发起请求
         var superagent = require('superagent');
         // 查询本机ip，这里需要根据实际情况选择get还是post
         var sreq = superagent.get('http://www.liulongbin.top:3005/api/getnewslist');
-        sreq.end((err, poxRes) => {      
-          let result=JSON.parse(poxRes.text)
+        sreq.end((err, poxRes) => {
+          let result = JSON.parse(poxRes.text);
+
+          // 插入到数据库中
+          let targetDb = db.db("vuebuspro"); // 目标数据库
+          let targetCollection = targetDb.collection("newlist");
+          targetCollection.insertMany(result.message).then(function (obj) {
+            // obj.result.n代表插入数据的条数
+            if (obj.result.ok && obj.result.n) {
+              console.log("数据插入成功")
+            }
+        
+          })
+
+          // 成功后将数据返回给前端
           res.json({
-            code:200,
-            data:result.message,
-            message:"新闻列表获取成功"
+            code: 200,
+            data: result.message,
+            message: "新闻列表获取成功"
           })
         })
-        // sreq.on('end', function (err, res) {
-        //   console.log(res)
-        // });
+      } else {
+        // 从数据库中查到了数据直接返回给前端、
+        res.json({
+          code: 200,
+          data: data,
+          message: "新闻列表获取成功"
+        })
       }
     })
 

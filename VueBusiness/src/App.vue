@@ -54,6 +54,7 @@ body {
   padding-bottom: 50.2px;
   width: 100%;
   height: 100%;
+  overflow:scroll;
 }
 
 /* 进入之前 */

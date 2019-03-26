@@ -93,10 +93,16 @@ MongoClient.connect(dbUrl, { useNewUrlParser: true }, function (err, db) {
 
   // 新闻列表
   app.get("/api/getnewslist",function(req,res){
-    res.json({
-      code:200,
-      data:[],
-    })
+
+    // 使用了superagent来发起请求
+     var superagent = require('superagent');
+     // 查询本机ip，这里需要根据实际情况选择get还是post
+     var sreq = superagent.get('http://www.liulongbin.top:3005/api/getnewslist');
+     sreq.pipe(res);
+     sreq.on('end', function(){
+         console.log('done');
+     });
+
   })
 
 

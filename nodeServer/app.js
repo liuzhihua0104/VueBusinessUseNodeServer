@@ -92,16 +92,46 @@ MongoClient.connect(dbUrl, { useNewUrlParser: true }, function (err, db) {
   })
 
   // 新闻列表
-  app.get("/api/getnewslist",function(req,res){
+  app.get("/api/getnewslist", function (req, res) {
 
-    // 使用了superagent来发起请求
-     var superagent = require('superagent');
-     // 查询本机ip，这里需要根据实际情况选择get还是post
-     var sreq = superagent.get('http://www.liulongbin.top:3005/api/getnewslist');
-     sreq.pipe(res);
-     sreq.on('end', function(){
-         console.log('done');
-     });
+    let targetDb = db.db("vuebuspro"); // 目标数据库
+    // let targetDb = db.db("rosemlabdate"); // 目标数据库
+    let result = targetDb.collection("newlist").find() //去newlist集合中查找所有数据，如果没有应该会自动创建
+    result.toArray(function (err, data) {
+      if (err) {
+        res.json({
+          code: 200,
+          msg: "读取数据失败"
+        })
+      }
+
+      // 如果没有数据就去别的服务器请求数据插入到数据库中
+
+      if (data.length == 0) {
+        // 使用了superagent来发起请求
+        var superagent = require('superagent');
+        // 查询本机ip，这里需要根据实际情况选择get还是post
+        var sreq = superagent.get('http://www.liulongbin.top:3005/api/getnewslist');
+        sreq.end((err, poxRes) => {      
+          let result=JSON.parse(poxRes.text)
+          res.json({
+            code:200,
+            data:result.message,
+            message:"新闻列表获取成功"
+          })
+        })
+        // sreq.on('end', function (err, res) {
+        //   console.log(res)
+        // });
+      }
+    })
+
+    return
+
+
+
+
+
 
   })
 

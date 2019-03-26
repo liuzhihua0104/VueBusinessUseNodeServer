@@ -9,7 +9,7 @@ import "./lib/mui/css/icons-extra.css"; //引入mui的图标css
 import 'mint-ui/lib/style.css'
 
 // 项目中引入并安装animate.css
-import animated from "animate.css"; 
+import animated from "animate.css";
 Vue.use(animated)
 
 Vue.config.productionTip = false
@@ -36,7 +36,16 @@ Vue.prototype.$get = get;
 Vue.prototype.$patch = patch;
 Vue.prototype.$put = put;
 
-Vue.prototype.urlApi=urlApi;
+Vue.prototype.urlApi = urlApi;
+
+
+// 全局过滤器
+import moment from "moment";
+Vue.prototype.$moment = moment;
+
+Vue.filter("dateFormat", function (dateString, format = "YYYY-MM-DD HH:mm:ss") {
+  return moment(dateString).format(format)
+})
 
 
 /* eslint-disable no-new */
@@ -46,3 +55,6 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+
+

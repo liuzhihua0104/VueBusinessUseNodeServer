@@ -5,7 +5,7 @@
         <a class="mui-navigate-right">
           <img class="mui-media-object mui-pull-left" :src="item.img_url">
           <div class="mui-media-body">
-            <p>{{item.title}}</p>
+            <p class="new-title">{{item.title|sub}}</p>
             <p class="mui-ellipsis">{{item.zhaiyao}}</p>
             <div class="detail-msg">
               <span>{{item.add_time|dateFormat("YYYY-MM-DD")}}</span>
@@ -33,6 +33,11 @@ export default {
       .catch(err => {
         console.log(err);
       });
+  },
+  filters:{
+    sub:function(str){
+      return str.substring(0,15)
+    }
   }
 };
 </script>
@@ -46,6 +51,11 @@ export default {
         .mui-media-body {
           p {
             padding: 0;
+            font-size: 12px;
+            &.new-title{
+              color:#000;
+              text-align: left;
+            }
           }
           .detail-msg {
             display: flex;

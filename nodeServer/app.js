@@ -114,12 +114,11 @@ app.get("/api/getlunbo", function (req, res) {
       data,
       msg: "获取图片列表成功！"
     })
-
   })
 })
 
-// 获取新闻列表
 
+// 获取新闻列表
 app.get("/api/getnewslist", function (req, res) {
   DbFn._find("vuebuspro", "newlist", {}, function (data) {
     if (data.length == 0) {
@@ -127,26 +126,18 @@ app.get("/api/getnewslist", function (req, res) {
       // 查询本机ip，这里需要根据实际情况选择get还是post
       var sreq = superagent.get('http://www.liulongbin.top:3005/api/getnewslist');
       sreq.end((err, poxRes) => {
-        let result = JSON.parse(poxRes.text);
-        console.log(result)
+        let obj = JSON.parse(poxRes.text);
+        DbFn._insertMany("vuebuspro", "newlist", obj.message, function (insertResult) {
+          if (insertResult.result.ok && insertResult.result.n) {
+            console.log("数据插入成功")
+            res.json({
+              code: 200,
+              data: insertResult.ops,
+              message: "新闻列表获取成功"
+            })
+          }
+        })
 
-        // 插入到数据库中
-        // let targetDb = db.db("vuebuspro"); // 目标数据库
-        // let targetCollection = targetDb.collection("newlist");
-        // targetCollection.insertMany(result.message).then(function (obj) {
-        //   // obj.result.n代表插入数据的条数
-        //   if (obj.result.ok && obj.result.n) {
-        //     console.log("数据插入成功")
-        //   }
-
-        // })
-
-        // // 成功后将数据返回给前端
-        // res.json({
-        //   code: 200,
-        //   data: result.message,
-        //   message: "新闻列表获取成功"
-        // })
       })
     } else {
       res.json({

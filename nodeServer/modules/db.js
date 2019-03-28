@@ -46,6 +46,22 @@ module.exports._find = function (dbName, collectionName, options, callback) {
   })
 }
 
+/**
+ * @param {*} dbName 数据库名字
+ * @param {*} collectionName 集合名字
+ * @param {*} arr 要插入到数据库中的数组数据
+ * @param {*} callback 回调
+ */
+module.exports._insertMany = function (dbName, collectionName, arr, callback) {
+  _connect(function (db) {
+    let targetDb = db.db(dbName);
+    let targetCollection = targetDb.collection(collectionName);
+    targetCollection.insertMany(arr).then(function (result) {
+      callback(result);//把插入的结果返回出去
+    })
+  })
+}
+
 
 
 

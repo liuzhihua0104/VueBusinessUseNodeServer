@@ -9,7 +9,21 @@ import NewList from "@/components/news/NewList"; // 购物车
 
 Vue.use(Router)
 
-export default new Router({
+// 路由守卫
+
+// Router.router.beforeEach((to, from, next) => {
+//   // to and from are both route objects. must call `next`.
+// })
+
+// console.log(RouterVueRouter)
+// Router.beforeEach((to, from, next) => {
+//   // to and from are both route objects. must call `next`.
+//   console.log(to)
+//   console.log(from)
+//   next();
+// })
+
+let router = new Router({
   routes: [
     {
       path: '/',
@@ -36,10 +50,23 @@ export default new Router({
     },
 
     {
-      path:"/newlist",
-      name:"newlist",
-      component:NewList   //新闻列表
+      path: "/newlist",
+      name: "newlist",
+      component: NewList   //新闻列表
     }
   ],
   linkActiveClass: "mui-active"
 })
+
+// 给项目添加路由守卫
+router.beforeEach((to, from, next) => {
+  // to and from are both route objects. must call `next`.
+  // console.log(to)
+  // console.log(from)
+  // console.log(router)
+  next(); //括号中传参false就是不让走，也可以router.push("/home") 重定向
+
+
+})
+
+export default router;

@@ -45,7 +45,7 @@ export default {
   created() {
     // console.log(this.urlApi);
     this.$get(this.urlApi.homeImgUrl).then(res => {
-      this.list = res.message;
+      this.list = res.data;
     });
   }
 };

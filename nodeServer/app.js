@@ -156,27 +156,44 @@ app.get("/api/getnewslist", function (req, res) {
 app.get("/api/getnew/:id", function (req, res) {
   // console.log(req)
   let id = req.params.id;
-  // console.log(id)
-  // 用传递过来的id去请求
-  // superagent
-  //   .get("http://www.liulongbin.top:3005/api/getnew/"+id) //这里的URL也可以是绝对路径
-  //   .end(function(req,res){
-  //       //do something
-  //       // console.log(req);
-  //       // console.log(res.text.message)
-  //       // let data=JSON.parse(res.text).message;
-  //       // console.log(data)
-  //   })
+  // DbFn._find({id:id},function(data){
+  //   console.log(data)
+  // })
+  let options = { "id": id }
+  console.log(options)
+  DbFn._find("vuebuspro", "new-detail", options, function (data) {
+    // console.log(data)
+    //  说明没有查找到数据，就去别的服务器请求，然后放到我自己的数据库中
+    if (!data || data.length == 0) {
+      console.log("没找到数据")
+      // 去别的服务器请求
+      superagentFn._superagentGet("http://www.liulongbin.top:3005/api/getnew/" + id, function (arr) {
+        // 插入自己的数据库
+        DbFn._insertMany("vuebuspro", "new-detail", arr, function (result) {
+          // 插入成功后的回调
+          res.json({
+            code: 200,
+            data: arr,
+            msg: "新闻详情获取成功"
+          })
+        })
+      })
+    } else {
+      console.log("有找到数据")
+      // console.log(data)
+      // 说明有数据直接返回，不需要去别的服务器请求
+      res.json({
+        code: 200,
+        data,
+        msg: "获取图片列表成功！"
+      })
+    }
 
-
-  superagentFn._superagentGet("http://www.liulongbin.top:3005/api/getnew/" + id, function (data) {
-    console.log(data)
-    res.json({
-      code:200,
-      data,
-      msg:"新闻详情获取成功"
-    })
   })
+
+  return
+
+
 
 
 

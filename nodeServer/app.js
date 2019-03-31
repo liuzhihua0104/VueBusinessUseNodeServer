@@ -2,8 +2,10 @@ let express = require("express");
 let app = new express();
 
 let DbFn = require("./modules/db.js")
+let superagentFn = require("./modules/superagent.js"); //引入封装好的superagentFn
+// console.log(superagentFn)
 
-console.log(DbFn)
+// console.log(DbFn)
 
 // 后端解决跨域的部分
 app.all('*', function (req, res, next) {
@@ -147,6 +149,37 @@ app.get("/api/getnewslist", function (req, res) {
       })
     }
   })
+
+})
+
+// 获取新闻详情
+app.get("/api/getnew/:id", function (req, res) {
+  // console.log(req)
+  let id = req.params.id;
+  // console.log(id)
+  // 用传递过来的id去请求
+  // superagent
+  //   .get("http://www.liulongbin.top:3005/api/getnew/"+id) //这里的URL也可以是绝对路径
+  //   .end(function(req,res){
+  //       //do something
+  //       // console.log(req);
+  //       // console.log(res.text.message)
+  //       // let data=JSON.parse(res.text).message;
+  //       // console.log(data)
+  //   })
+
+
+  superagentFn._superagentGet("http://www.liulongbin.top:3005/api/getnew/" + id, function (data) {
+    console.log(data)
+    res.json({
+      code:200,
+      data,
+      msg:"新闻详情获取成功"
+    })
+  })
+
+
+
 
 })
 

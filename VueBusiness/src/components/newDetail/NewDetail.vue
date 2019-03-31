@@ -4,7 +4,20 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      html: ""
+    };
+  },
+  created() {
+    console.log(this.$route.params.id);
+    // let that=this;
+    this.$get("/api/getnew/" + this.$route.params.id)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 };
 </script>

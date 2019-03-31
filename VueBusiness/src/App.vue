@@ -77,6 +77,6 @@ body {
 
 .v-enter-active,
 .v-leave-active {
-  transition: all 0.1s ease-in-out;
+  transition: all 0.1s linear;
 }
 </style>

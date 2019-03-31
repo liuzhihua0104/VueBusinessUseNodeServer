@@ -2,7 +2,7 @@
   <div class="container">
     <ul class="mui-table-view mui-table-view-chevron">
       <li class="mui-table-view-cell mui-media" v-for="item in newList" :key="item.id">
-        <a class="mui-navigate-right">
+        <router-link class="mui-navigate-right" :to="{name:'newDetail',params:{id:item.id}}">
           <img class="mui-media-object mui-pull-left" :src="item.img_url">
           <div class="mui-media-body">
             <p class="new-title">{{item.title|sub}}</p>
@@ -12,7 +12,7 @@
               <span>点击次数{{item.click}}</span>
             </div>
           </div>
-        </a>
+        </router-link>
       </li>
     </ul>
   </div>

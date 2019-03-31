@@ -161,7 +161,7 @@ app.get("/api/getnew/:id", function (req, res) {
   // })
   let options = { "id": id }
   console.log(options)
-  DbFn._find("vuebuspro", "new-detail", options, function (data) {
+  DbFn._find("vuebuspro", "new_detail", options, function (data) {
     // console.log(data)
     //  说明没有查找到数据，就去别的服务器请求，然后放到我自己的数据库中
     if (!data || data.length == 0) {
@@ -169,7 +169,7 @@ app.get("/api/getnew/:id", function (req, res) {
       // 去别的服务器请求
       superagentFn._superagentGet("http://www.liulongbin.top:3005/api/getnew/" + id, function (arr) {
         // 插入自己的数据库
-        DbFn._insertMany("vuebuspro", "new-detail", arr, function (result) {
+        DbFn._insertMany("vuebuspro", "new_detail", arr, function (result) {
           // 插入成功后的回调
           res.json({
             code: 200,

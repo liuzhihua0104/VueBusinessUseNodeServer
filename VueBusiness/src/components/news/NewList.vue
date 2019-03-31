@@ -18,6 +18,8 @@
   </div>
 </template>
 <script>
+import { Indicator } from "mint-ui";
+
 export default {
   data() {
     return {
@@ -25,18 +27,23 @@ export default {
     };
   },
   created() {
+    Indicator.open({
+      text: "加载中...",
+      spinnerType: "fading-circle"
+    });
     this.$get(this.urlApi.newListUrl, {})
       .then(res => {
-        // console.log(res)
         this.newList = res.data;
+        Indicator.close();
       })
       .catch(err => {
         console.log(err);
+        Indicator.close();
       });
   },
-  filters:{
-    sub:function(str){
-      return str.substring(0,15)
+  filters: {
+    sub: function(str) {
+      return str.substring(0, 15);
     }
   }
 };
@@ -52,14 +59,14 @@ export default {
           p {
             padding: 0;
             font-size: 12px;
-            &.new-title{
-              color:#000;
+            &.new-title {
+              color: #000;
               text-align: left;
             }
           }
           .detail-msg {
             display: flex;
-            justify-content:space-between;
+            justify-content: space-between;
           }
         }
       }

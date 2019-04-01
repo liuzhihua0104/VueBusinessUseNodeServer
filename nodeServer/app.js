@@ -154,12 +154,8 @@ app.get("/api/getnewslist", function (req, res) {
 
 // 获取新闻详情
 app.get("/api/getnew/:id", function (req, res) {
-  // console.log(req)
   let id = req.params.id;
-  // DbFn._find({id:id},function(data){
-  //   console.log(data)
-  // })
-  let options = { "id": id }
+  let options = { "id": Number(id) }  
   console.log(options)
   DbFn._find("vuebuspro", "new_detail", options, function (data) {
     // console.log(data)

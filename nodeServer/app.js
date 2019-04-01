@@ -110,7 +110,7 @@ let dbUrl = "mongodb://localhost:27017";
 
 // 获取轮播图
 app.get("/api/getlunbo", function (req, res) {
-  DbFn._find("vuebuspro", "home_img", {}, function (data) {
+  DbFn._find("home_img", {}, function (data) {
     res.json({
       code: 200,
       data,
@@ -122,14 +122,14 @@ app.get("/api/getlunbo", function (req, res) {
 
 // 获取新闻列表
 app.get("/api/getnewslist", function (req, res) {
-  DbFn._find("vuebuspro", "newlist", {}, function (data) {
+  DbFn._find("newlist", {}, function (data) {
     if (data.length == 0) {
       var superagent = require('superagent');
       // 查询本机ip，这里需要根据实际情况选择get还是post
       var sreq = superagent.get('http://www.liulongbin.top:3005/api/getnewslist');
       sreq.end((err, poxRes) => {
         let obj = JSON.parse(poxRes.text);
-        DbFn._insertMany("vuebuspro", "newlist", obj.message, function (insertResult) {
+        DbFn._insertMany("newlist", obj.message, function (insertResult) {
           if (insertResult.result.ok && insertResult.result.n) {
             console.log("数据插入成功")
             res.json({
@@ -155,9 +155,10 @@ app.get("/api/getnewslist", function (req, res) {
 // 获取新闻详情
 app.get("/api/getnew/:id", function (req, res) {
   let id = req.params.id;
-  let options = { "id": Number(id) }  
+  // 注意获取到的id是string类型的，而数据库中是number类型的，必须保持一致，否则查找不到数据
+  let options = { "id": Number(id) }
   console.log(options)
-  DbFn._find("vuebuspro", "new_detail", options, function (data) {
+  DbFn._find("new_detail", options, function (data) {
     // console.log(data)
     //  说明没有查找到数据，就去别的服务器请求，然后放到我自己的数据库中
     if (!data || data.length == 0) {
@@ -165,7 +166,7 @@ app.get("/api/getnew/:id", function (req, res) {
       // 去别的服务器请求
       superagentFn._superagentGet("http://www.liulongbin.top:3005/api/getnew/" + id, function (arr) {
         // 插入自己的数据库
-        DbFn._insertMany("vuebuspro", "new_detail", arr, function (result) {
+        DbFn._insertMany("new_detail", arr, function (result) {
           // 插入成功后的回调
           res.json({
             code: 200,

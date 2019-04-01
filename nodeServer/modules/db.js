@@ -1,7 +1,7 @@
 // 使用mongodb
 let MongoClient = require("mongodb").MongoClient;
 let dbUrl = "mongodb://localhost:27017"; //数据库的地址
-let dbName="vuebuspro"; //数据库的名称
+let dbName = "vuebuspro"; //数据库的名称
 
 
 // 这一步只负责链接数据库
@@ -60,6 +60,22 @@ module.exports._insertMany = function (collectionName, arr, callback) {
     })
   })
 }
+
+
+/**
+ * @param {*} collectionName 集合名字
+ * @param {*} options  查找的条件
+ * @param {*} callback 回调
+ */
+module.exports._findOne = function (collectionName, options, callback) {
+  _connect(function(db){
+    let targetDb=db.db(dbName);
+    let targetCollection=targetDb.collection(collectionName);
+    targetCollection.findOne()
+  })
+
+}
+
 
 
 

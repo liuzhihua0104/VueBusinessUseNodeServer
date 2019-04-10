@@ -23,7 +23,7 @@ function _connect(callback) {
 
 
 /**
- * 查找一条数据
+ * 查找数据
  * @param {*} collectionName 集合名字
  * @param {*} options 查找的条件
  * @param {*} callback 回调

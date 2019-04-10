@@ -1,17 +1,22 @@
 // 使用mongodb
 let MongoClient = require("mongodb").MongoClient;
-let dbUrl = "mongodb://localhost:27017"; //数据库的地址
-let dbName = "vuebuspro"; //数据库的名称
+// let dbUrl = "mongodb://localhost:27017"; //数据库的地址
+// let dbName = "vuebuspro"; //数据库的名称
+let dbUrl = "mongodb://<liuzhihuarose>:<13910830226QWERT>@ds121996.mlab.com:21996"; //数据库的地址
+let dbName = "rosemlabdate"; //数据库的名称
 
 
 // 这一步只负责链接数据库
 function _connect(callback) {
   MongoClient.connect(dbUrl, { useNewUrlParser: true }, function (err, db) {
     if (err) {
-      res.json({
-        code: 200,
-        msg: "链接数据库失败！"
-      })
+      console.log("连接失败")
+      console.log(err)
+
+      // res.json({
+      //   code: 200,
+      //   msg: "链接数据库失败！"
+      // })
       return
     }
     callback(db);//执行回调，抛出db

@@ -42,7 +42,6 @@ app.get("/api/getlunbo", function (req, res) {
   })
 })
 
-
 // 获取新闻列表
 app.get("/api/getnewslist", function (req, res) {
   DbFn._find("newlist", {}, function (data) {

@@ -16,7 +16,7 @@ if (process.env.NODE_ENV == 'development') {
 }
 
 // 请求时间的限制
-axios.defaults.timeout = 5000;
+axios.defaults.timeout = 25000;
 
 // post请求头
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';

@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <mt-header fixed title="固定在顶部"></mt-header>
+    <mt-header fixed title="固定在顶部">
+      <div @click="goBack" slot="left" v-if="showBack">
+        <mt-button icon="back"></mt-button>
+      </div>
+    </mt-header>
     <transition mode="out-in">
       <router-view class="animated router-view-box"/>
     </transition>
@@ -28,7 +32,28 @@
 
 <script>
 export default {
-  name: "App"
+  data() {
+    return {
+      show: false,
+      showBack: false //控制是否显示返回按钮
+    };
+  },
+  created: function() {},
+  watch: {
+    // 如果路由发生改变这个函数就会运行
+    $route: function() {
+      if (this.$route.path == "/homecontainer") {
+        this.showBack = false;
+      } else {
+        this.showBack = true;
+      }
+    }
+  },
+  methods: {
+    goBack() {
+      this.$router.go(-1);
+    }
+  }
 };
 </script>
 
@@ -54,7 +79,7 @@ body {
   padding-bottom: 50.2px;
   width: 100%;
   height: 100%;
-  overflow:scroll;
+  overflow: scroll;
 }
 
 /* 进入之前 */

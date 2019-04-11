@@ -16,10 +16,11 @@ Vue.config.productionTip = false
 
 
 // 按需引入minu-ui组件
-import { Header, Swipe, SwipeItem } from 'mint-ui';
+import { Header, Swipe, SwipeItem,  Button } from 'mint-ui';
 Vue.component(Header.name, Header); // 顶部固定栏
 Vue.component(Swipe.name, Swipe); // 轮播图
 Vue.component(SwipeItem.name, SwipeItem); // 轮播图item
+Vue.component(Button.name, Button); // button按钮
 
 // 引入axios并挂在到vue的原型对象上面
 // import axios from "axios";

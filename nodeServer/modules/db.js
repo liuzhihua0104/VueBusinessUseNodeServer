@@ -1,9 +1,9 @@
 // 使用mongodb
 let MongoClient = require("mongodb").MongoClient;
-// let dbUrl = "mongodb://localhost:27017"; //数据库的地址
-// let dbName = "vuebuspro"; //数据库的名称
-let dbUrl = "mongodb://<liuzhihuarose>:<13910830226QWERT>@ds121996.mlab.com:21996"; //数据库的地址
-let dbName = "rosemlabdate"; //数据库的名称
+let dbUrl = "mongodb://localhost:27017"; //数据库的地址
+let dbName = "vuebuspro"; //数据库的名称
+// let dbUrl = "mongodb://<lizhihua>:<13910830226Aa>@ds034208.mlab.com:34208"; //数据库的地址
+// let dbName = "rose"; //数据库的名称
 
 
 // 这一步只负责链接数据库
